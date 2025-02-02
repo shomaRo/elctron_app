@@ -1,8 +1,11 @@
 import React, { useEffect, useRef } from "react";
-import { NodeEditor, Component, NodeData, WorkerInputs, WorkerOutputs, Output, Socket } from "rete";
+import { NodeEditor, Component, Output, Socket, Node } from "rete";
 import AreaPlugin from "rete-area-plugin";
 import ConnectionPlugin from "rete-connection-plugin";
 import ReactRenderPlugin from "rete-react-render-plugin";
+
+type NodeData = { id: number; data: any; inputs: any; outputs: any };
+type WorkerInputs = { [key: string]: any };
 
 export const ReteEditor: React.FC = () => {
   const containerRef = useRef<HTMLDivElement | null>(null);
@@ -25,13 +28,13 @@ export const ReteEditor: React.FC = () => {
           super("Number");
         }
 
-        async builder(node: NodeData) {
+        async builder(node: Node) {
           node.data = {};
           node.addOutput(new Output("num", "Number", numSocket));
           return Promise.resolve();
         }
 
-        worker(node: NodeData, inputs: WorkerInputs, outputs: any, ...args: unknown[]) {
+        worker(node: NodeData, _inputs: WorkerInputs, outputs: any, ..._args: unknown[]) {
           outputs["num"] = node.data.value || 0;
         }
       }

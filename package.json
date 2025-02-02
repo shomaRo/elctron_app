@@ -1,24 +1,25 @@
 {
   "name": "my-electron-app",
   "version": "1.0.0",
-  "description": "",
+  "description": "My Rete.js Desktop App",
   "main": "dist/main.js",
+  "type": "module",
   "scripts": {
     "start": "tsc && electron .",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "tsc && electron-builder"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "build": {
+    "appId": "com.yourname.myapp",
+    "mac": {
+      "category": "public.app-category.utilities",
+      "target": "dmg"
+    },
+    "asar": false
+  },
   "devDependencies": {
-    "@babel/preset-react": "^7.26.3",
-    "babel-loader": "^9.2.1",
     "electron": "^34.0.2",
-    "html-webpack-plugin": "^5.6.3",
-    "typescript": "^5.7.3",
-    "webpack": "^5.97.1",
-    "webpack-cli": "^6.0.1",
-    "webpack-dev-server": "^5.2.0"
+    "electron-builder": "^24.6.0",
+    "typescript": "^5.7.3"
   },
   "dependencies": {
     "react": "^19.0.0",

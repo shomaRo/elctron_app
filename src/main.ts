@@ -11,7 +11,7 @@ function createWindow(): void {
     },
   });
 
-  mainWindow.loadURL('https://www.example.com'); // 最初に表示するページ
+  mainWindow.loadURL('http://localhost:5173/'); // 最初に表示するページ
   mainWindow.on('closed', () => {
     mainWindow = null;
   });
